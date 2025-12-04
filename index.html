@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>კალკულატორი</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #656a53; /* გვერდის ფონური ფერი */
+        }
+
+        .calculator {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        input, button {
+            font-size: 20px;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>მარტივი კალკულატორი</h1>
+
+        <!-- რიცხვების შესაყვანი ველები -->
+        <input type="number" id="number" placeholder="პირველი რიცხვი">
+        <input type="number" id="number2" placeholder="მეორე რიცხვი"><br><br>
+
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+
+        <!-- შედეგის ჩვენება -->
+        <h2 id="result">შედეგი: </h2>
+    </div>
+
+    <script>
+        function calculate(op) {
+            const num1 = parseFloat(document.getElementById('number').value);
+            const num2 = parseFloat(document.getElementById('number2').value);
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = 'გთხოვთ, შეიყვანეთ ორივე რიცხვი';
+            } else {
+                if (op === '+') {
+                    result = num1 + num2;
+                } else if (op === '-') {
+                    result = num1 - num2;
+                } else if (op === '*') {
+                    result = num1 * num2;
+                } else if (op === '/') {
+                    result = num2 !== 0 ? num1 / num2 : 'არ შეიძლება განყოფა ნულზე';
+                }
+            }
+
+            document.getElementById('result').innerText = 'შედეგი: ' + result;
+        }
+    </script>
+</body>
+</html>
